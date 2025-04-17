@@ -19,13 +19,20 @@ The training data is loaded from a JSON file named `en_ta_instruct.json`, where 
   "input": "Hello, how are you?",
   "output": "Vanakkam, eppadi irukkeenga?"
 }
+```
+# Requirements:
+Run the requirements file 
+```
+$ pip install -r requirements.txt
 
+$ pip install transformers datasets torch
+```
 
-pip install -r requirements.txt
 🏋️‍♀️ Training
 To start training the model:
-
+```
 python train_t5_thanglish.py
+```
 Training will:
 
 Load and preprocess the dataset
@@ -45,7 +52,7 @@ logs/ – training logs
 
 🧪 Inference Example
 You can load and test the model like this:
-
+```
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 tokenizer = T5Tokenizer.from_pretrained("t5-thanglish-final")
@@ -56,16 +63,11 @@ input_ids = tokenizer(text, return_tensors="pt").input_ids
 outputs = model.generate(input_ids, max_length=128)
 
 print("Thanglish:", tokenizer.decode(outputs[0], skip_special_tokens=True))
+```
 
 ⚙️ Notes
 If you encounter an error like unexpected keyword argument 'evaluation_strategy', your transformers library may be outdated. Upgrade it using:
-
-pip install --upgrade transformers
-
+```
+$ pip install --upgrade transformers
+```
 GPU support via CUDA will speed up training. Ensure your PyTorch installation supports CUDA if available.
-
-Edit
-
----
-
-Let me know if you'd like to include model evaluation metrics, demo links, or deployment instructio
